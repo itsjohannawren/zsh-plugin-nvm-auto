@@ -35,7 +35,7 @@ __nvm_auto_load() {
 
 	if [ "${NODE_VERSION}" != "${__NVM_AUTO_VERSION}" ]; then
 		if [ "${NODE_VERSION}" = "default" ]; then
-			if [ "$(nvm version default 2>/dev/null)" != "N/A" ]; then
+			if nvm version default 2>/dev/null | grep -qE '(system|[0-9])'; then
 				nvm use default &>/dev/null
 			fi
 		else
